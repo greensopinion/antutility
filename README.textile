@@ -1,0 +1,6 @@
+h1. About
+
+Wondering why your Ant build is slow? Are your continuous integration builds taking too long?  This project may help.
+
+This project was created as a lightweight mechanism for profiling your Ant builds in a non-intrusive manner.
+For "details read this blog entry":http://greensopinion.blogspot.ca/2009/12/ant-build-analysis-gets-facelift.html
