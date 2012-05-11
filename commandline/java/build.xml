@@ -1,0 +1,64 @@
+<?xml version='1.0'?>
+<project name="antutility" default="all">
+
+	<path id="compile.classpath">
+		<fileset dir="lib">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="init">
+		<mkdir dir="dist"/>
+		<mkdir dir="bin"/>
+	</target>
+
+	<target name="clean" depends="init" description="Remove all build artifacts">
+		<delete includeemptydirs="true">
+			<fileset dir="bin">
+				<include name="**/*"/>
+			</fileset>
+			<fileset dir="dist">
+				<include name="**/*"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="all" depends="clean, package">
+	</target>
+
+
+	<target name="compile" depends="init" description="Compile all Java source files">
+
+		<!-- Compile Entire Source Tree -->
+		<javac source="5" target="5" 
+    	      classpathref="compile.classpath" 
+    	      debug="yes"
+    	      deprecation="yes" 
+    	      destdir="bin" 
+    	      optimize="yes" 
+    	      srcdir="src"/>
+
+		<!-- copy all resources -->
+		<copy todir="bin" overwrite="false">
+			<fileset dir="src">
+				<include name="**/*.java"/>
+				<exclude name="**/*~"/>
+				<exclude name="**/*.java~"/>
+				<exclude name="**/*.form"/>
+				<exclude name="**/*.scc"/>
+				<exclude name="**/*.class"/>
+				<exclude name="**/package.html"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="package" depends="compile">
+		<jar 
+    	      basedir="bin" 
+    	      index="true"
+    	      compress="true" 
+    	      jarfile="dist/antutility.jar">
+		</jar>
+	</target>
+	
+</project>

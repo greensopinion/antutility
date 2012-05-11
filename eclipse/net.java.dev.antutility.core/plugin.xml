@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="metricsListener" name="Metrics Listener" schema="schema/metricsListener.exsd"/>
+   <extension
+         point="org.eclipse.ant.core.extraClasspathEntries">
+      <extraClasspathEntry
+            eclipseRuntime="true"
+            headless="false"
+            library="lib/antutility-ant.jar">
+      </extraClasspathEntry>
+   </extension>
+</plugin>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>JavaTools - Tip</title>
+</head>
+<body>
+
+	Analyzing Ant Build Performance
+	
+	Your project has <a href="http://ant.apache.org/">Ant</a> build scripts.  It's running in a Continuous Integration environment.  But as your project evolves the build gets slower and slower,
+	and before long you're waiting more than 20 minutes for a build to complete.  What now?  Enter <a href="http://antutility.dev.java.net">Antutility</a>.
+	
+	<a href="http://antutility.dev.java.net">Antutility</a> is a non-intrusive tool for analyzing <a href="http://ant.apache.org/">Ant</a> build script performance and behavior.  Without modifying
+	your build scripts, you can find out exactly what part of your build is causing the problem.  
+	
+	To analyze your build, execute your build as follows:
+	
+	<pre>
+$ export CLASSPATH=/path/to/antutility.jar
+$ ant -listener	net.java.antutility.BuildMetricsListener [target]
+	</pre>
+
+	While the build is running <a href="http://antutility.dev.java.net">Antutility</a> will collect metrics and display a report when the build is complete:
+	
+	<pre>
+BUILD METRICS:
+Local Time, Child Time, Invocation Count, Type, Name, Location
+76515, 0, 111, TASK, eclipse-plugin-dependency-classpath, build/ant/eclipse-plugin-build.xml:51: 
+47919, 0, 102, TASK, javac, build/ant/eclipse-plugin-build.xml:105: 
+37024, 0, 6, TASK, java, build/ant/eclipse-plugin-build.xml:234: 
+34707, 0, 1, TASK, untar, com.maketechnologies.tlm.test.common/test.xml:50: 
+32094, 0, 1, TASK, gunzip, com.maketechnologies.tlm.test.common/test.xml:49: 
+16656, 0, 7, TASK, junit, build/ant/eclipse-plugin-build.xml:290: 
+13383, 0, 1, TASK, copy, build/ant/eclipse-site-build.xml:45: 
+9335, 0, 1, TASK, java, com.maketechnologies.tlm.test.common/test.xml:113: 
+... snip ...	
+	</pre>
+	The report will let you know which tasks take the most time, how often they are called, and where in your build scripts the tasks are declared.  Now you can pinpoint the problem, modify the build
+	and you're back in the game!
+	 
+	For more details on how to improve your Ant build, see the <a href="http://antutility.dev.java.net">Antutility project page</a>.
+</body>
+</html>

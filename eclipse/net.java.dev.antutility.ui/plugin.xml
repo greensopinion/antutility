@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="net.java.dev.antutility.internal.ui.editor.BuildMetricsEditor"
+            default="false"
+            id="net.java.dev.antutility.internal.ui.buildMetricsEditor"
+            name="Build Metrics Editor">
+      </editor>
+   </extension>
+   <extension
+         point="net.java.dev.antutility.core.metricsListener">
+      <metricsListener
+            class="net.java.dev.antutility.internal.ui.BuildMetricsListener">
+      </metricsListener>
+   </extension>
+
+</plugin>

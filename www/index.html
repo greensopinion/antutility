@@ -1,0 +1,154 @@
+<html>
+	<head>
+		<title>Project Home Page</title>
+		<meta http-equiv="Content-Type"
+			content="text/html; charset=iso-8859-1">
+	</head>
+
+	<body bgcolor="#FFFFFF" text="#000000">
+		<script type="text/javascript">
+	
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-3754109-5']);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	  })();
+	
+	</script>
+		<h1>Ant Utility Project Home Page</h1>
+		<h2>Overview</h2>
+		<p>
+			Wondering why your
+			<a href="http://ant.apache.org">Ant</a>
+			build is slow? Is your continuous integration server taking
+			too long to produce your project builds? This project may
+			help.
+		</p>
+		<p>
+			This project includes a small number of classes for use with
+			<a href="http://ant.apache.org">Ant</a>
+			that can help you to analyze your build in a non-intrusive
+			manner.
+		</p>
+
+		<h2>How It Works</h2>
+		<p>
+			<a href="http://ant.apache.org">Ant</a>
+			provides some great facilities for customization. One of
+			them is the
+			<code>org.apache.tools.ant.BuildListener</code>
+			. By implementing a build listener, you can get detailed
+			information about the build without changing your build
+			scripts. This utility contains a build listener that gathers
+			and accumulates timing metrics for your build, and produces
+			a report. The report can be visually inspected, or loaded
+			into a spreadsheet since it's in CSV format.
+		</p>
+		<h2>Analyze Your Build</h2>
+		<p>
+			Run your build from the command-line using the following
+			syntax:
+			<br />
+			<code>
+				ant -listener net.java.antutility.BuildMetricsListener [target]
+			</code>
+		</p>
+		<p>Running it on our build produces results like this:</p>
+		<pre>
+BUILD METRICS:
+Local Time, Child Time, Invocation Count, Type, Name, Location
+76515, 0, 111, TASK, eclipse-plugin-dependency-classpath, /Users/dgreen/Documents/mdd-tools/build/ant/eclipse-plugin-build.xml:51: 
+47919, 0, 102, TASK, javac, /Users/dgreen/Documents/mdd-tools/build/ant/eclipse-plugin-build.xml:105: 
+37024, 0, 6, TASK, java, /Users/dgreen/Documents/mdd-tools/build/ant/eclipse-plugin-build.xml:234: 
+34707, 0, 1, TASK, untar, /Users/dgreen/Documents/mdd-tools/com.maketechnologies.tlm.test.common/test.xml:50: 
+32094, 0, 1, TASK, gunzip, /Users/dgreen/Documents/mdd-tools/com.maketechnologies.tlm.test.common/test.xml:49: 
+16656, 0, 7, TASK, junit, /Users/dgreen/Documents/mdd-tools/build/ant/eclipse-plugin-build.xml:290: 
+13383, 0, 1, TASK, copy, /Users/dgreen/Documents/mdd-tools/build/ant/eclipse-site-build.xml:45: 
+9335, 0, 1, TASK, java, /Users/dgreen/Documents/mdd-tools/com.maketechnologies.tlm.test.common/test.xml:113: 
+5151, 0, 1, TASK, copy, /Users/dgreen/Documents/mdd-tools/build/build.xml:445: 
+5114, 0, 34, TASK, jar, /Users/dgreen/Documents/mdd-tools/build/ant/eclipse-plugin-build.xml:156: 
+4927, 0, 7, TASK, javac, /Users/dgreen/Documents/mdd-tools/build/ant/eclipse-plugin-build.xml:196: 
+4320, 0, 1, TASK, copy, /Users/dgreen/Documents/mdd-tools/build/build.xml:454: 
+3748, 0, 1, TASK, exec, /Users/dgreen/Documents/mdd-tools/com.maketechnologies.tlm.web.framework.gen/build2.xml:49: 
+3566, 0, 1, TASK, style, /Users/dgreen/Documents/mdd-tools/build/ant/docbook/docbook/build-internal.xml:189: 
+3408, 0, 1, TASK, copy, /Users/dgreen/Documents/mdd-tools/build/build.xml:471: 
+2977, 0, 1, TASK, java, /Users/dgreen/Documents/mdd-tools/build/swizzle/build.xml:36: 
+2287, 0, 1, TASK, java, /Users/dgreen/Documents/mdd-tools/build/swizzle/build.xml:21: 
+2213, 0, 1, TASK, copy, /Users/dgreen/Documents/mdd-tools/com.maketechnologies.tlm.test.common/test.xml:25: 
+2205, 0, 117, TASK, taskdef, /Users/dgreen/Documents/mdd-tools/build/build.xml:40: 
+2182, 0, 1, TASK, unzip, /Users/dgreen/Documents/mdd-tools/com.maketechnologies.tlm.test.common/test.xml:19: 
+2106, 0, 7, TASK, junitreport, /Users/dgreen/Documents/mdd-tools/build/ant/eclipse-plugin-build.xml:314: 
+1347, 0, 7, TASK, copy, /Users/dgreen/Documents/mdd-tools/build/ant/eclipse-plugin-build.xml:199: 
+1259, 0, 1, TASK, zip, /Users/dgreen/Documents/mdd-tools/build/ant/eclipse-site-build.xml:54: 
+1091, 0, 102, TASK, copy, /Users/dgreen/Documents/mdd-tools/build/ant/eclipse-plugin-build.xml:108: 
+... snip ...
+		</pre>
+		<h3>What it means</h3>
+		<p>
+			The build metrics are reported with the left-most column
+			being the time spent performing a specific task (in
+			milliseconds). Also listed is the time spent performing
+			"child" tasks, the invocation count, the type of event
+			(BUILD, TARGET or TASK), the name of the task or target, and
+			the location (the build script file name and line number).
+			The metrics are sorted by "Local Time" (descending)
+		</p>
+		<p>
+			The report makes it easy to determine the bottlenecks in the
+			<a href="http://ant.apache.org">Ant</a>
+			build process much the same way as a Java profiler does, but
+			without the headaches and overhead of running the build in a
+			profiler. Since the
+			<a href="http://ant.apache.org">Ant</a>
+			build script file name and line number are listed, it is
+			really clear as to where the problems lie.
+		</p>
+		<h2>How To Run antutility</h2>
+		<p>
+			There are a few ways to run antutility, most of which have
+			to do with classpath setup.
+		</p>
+		<ol>
+			<li>
+				<b>Run your build with antutility on the classpath:</b>
+				<br />
+				Put the absolute path to antutility.jar on your
+				classpath. On my mac, this means I do the following:
+				<br />
+				<pre>
+$ export CLASSPATH=/Users/dgreen/Documents/antutility/trunk/java/dist/antutility.jar
+$ ant -listener	net.java.antutility.BuildMetricsListener [target]
+				</pre>
+				where [target] is an optional ant target name
+			</li>
+			<li>
+				<b>
+					Run your build with antutility in the Ant lib
+					folder:
+				</b>
+				<br />
+				Copy the antutility.jar into your Ant installation lib
+				folder, then run your build as follows:
+				<br />
+				<pre>
+$ ant -listener	net.java.antutility.BuildMetricsListener [target]
+				</pre>
+				where [target] is an optional ant target name
+			</li>
+		</ol>
+		<p>
+		After launching your ant build, the build should proceed
+		normally. After the build has completed, antutility should
+		create a report and print it to the console.
+		</p>
+		<h2>Where To Get It (Downloads)</h2>
+		<p>
+		Check the <a href="https://antutility.dev.java.net/servlets/ProjectDocumentList">Documents and Files</a> section for the latest version.
+		</p>
+	</body>
+</html>
+

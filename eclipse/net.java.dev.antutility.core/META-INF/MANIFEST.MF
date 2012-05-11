@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ant Utility Core
+Bundle-SymbolicName: net.java.dev.antutility.core;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: David Green
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: net.java.dev.antutility.internal.core.AntUtilityPlugin
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.5.0"
+Export-Package: net.java.dev.antutility.internal.core;x-friends:="net.java.dev.antutility.ui"

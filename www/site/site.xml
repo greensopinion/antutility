@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/net.java.dev.antutility_feature_1.0.0.200912092218.jar" id="net.java.dev.antutility_feature" version="1.0.0.200912092218">
+      <category name="Ant Utility"/>
+   </feature>
+   <category-def name="Ant Utility" label="Ant Utility"/>
+</site>
